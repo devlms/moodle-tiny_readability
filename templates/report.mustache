@@ -1,0 +1,66 @@
+{{!
+    This file is part of Moodle - https://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+}}
+{{!
+    @template tiny_readability/report
+
+    The reading level of the editor's text.
+
+    Example context (json):
+    {
+        "hastext": true,
+        "words": 120,
+        "sentences": 8,
+        "readingease": 64,
+        "band": "Plain English",
+        "grade": 8.2,
+        "average": 15,
+        "longlimit": 25,
+        "haslong": true,
+        "longsentences": [{"text": "A very long sentence."}]
+    }
+}}
+<div class="tiny_readability">
+{{^hastext}}
+    <p>{{#str}}notext, tiny_readability{{/str}}</p>
+{{/hastext}}
+{{#hastext}}
+    <dl class="row mb-2">
+        <dt class="col-sm-6">{{#str}}readingease, tiny_readability{{/str}}</dt>
+        <dd class="col-sm-6" data-region="readingease"><strong>{{readingease}}</strong> ({{band}})</dd>
+        <dt class="col-sm-6">{{#str}}grade, tiny_readability{{/str}}</dt>
+        <dd class="col-sm-6" data-region="grade">{{grade}}</dd>
+        <dt class="col-sm-6">{{#str}}sentencelength, tiny_readability{{/str}}</dt>
+        <dd class="col-sm-6">{{#str}}wordspersentence, tiny_readability, {{average}}{{/str}}</dd>
+        <dt class="col-sm-6">{{#str}}words, tiny_readability{{/str}}</dt>
+        <dd class="col-sm-6" data-region="words">{{words}}</dd>
+        <dt class="col-sm-6">{{#str}}sentences, tiny_readability{{/str}}</dt>
+        <dd class="col-sm-6" data-region="sentences">{{sentences}}</dd>
+    </dl>
+    <p class="small text-muted mb-1">{{#str}}readingeasehelp, tiny_readability{{/str}}</p>
+    <p class="small text-muted">{{#str}}gradehelp, tiny_readability{{/str}}</p>
+    {{#haslong}}
+        <h4 class="h6 mt-3">{{#str}}longsentences, tiny_readability, {{longlimit}}{{/str}}</h4>
+        <ul class="small">
+            {{#longsentences}}<li>{{text}}</li>{{/longsentences}}
+        </ul>
+    {{/haslong}}
+    {{^haslong}}
+        <p class="small">{{#str}}nolongsentences, tiny_readability, {{longlimit}}{{/str}}</p>
+    {{/haslong}}
+    <p class="small text-muted mt-3 mb-0">{{#str}}englishonly, tiny_readability{{/str}}</p>
+{{/hastext}}
+</div>
