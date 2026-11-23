@@ -45,5 +45,5 @@ $string['readingease'] = 'Reading ease';
 $string['readingeasehelp'] = 'Flesch reading ease, from 0 (very hard) to 100 (very easy). Most adults read 60 and above comfortably.';
 $string['sentencelength'] = 'Average sentence length';
 $string['sentences'] = 'Sentences';
-$string['wordspersentence'] = '{$a} words';
 $string['words'] = 'Words';
+$string['wordspersentence'] = '{$a} words';
